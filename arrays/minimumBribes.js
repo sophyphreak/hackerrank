@@ -1,15 +1,15 @@
 const minimumBribes = q => {
+  let arr = q.slice();
   let bribes = 0;
-  const qLength = q.length;
-  for (let current = qLength; current > 1; current--) {
-    const index = q.length - 1;
-    if (q[index] === current) {
-      q.splice(index, 1);
-    } else if (q[index - 1] === current) {
-      q.splice(index - 1, 1);
+  for (let current = q.length; current > 1; current--) {
+    const index = arr.length - 1;
+    if (arr[index] === current) {
+      arr.splice(index, 1);
+    } else if (arr[index - 1] === current) {
+      arr.splice(index - 1, 1);
       bribes++;
-    } else if (q[index - 2] === current) {
-      q.splice(index - 2, 1);
+    } else if (arr[index - 2] === current) {
+      arr.splice(index - 2, 1);
       bribes++;
       bribes++;
     } else {
