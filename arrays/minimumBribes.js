@@ -1,15 +1,22 @@
 const minimumBribes = q => {
   let bribes = 0;
   const qLength = q.length;
-  for (let index = qLength; index > 1; index--) {
-    const targetLocation = q.indexOf(index);
-    q.splice(targetLocation, 1);
-    bribes += index - targetLocation - 1;
-    if (index - targetLocation - 1 > 2) {
+  for (let current = qLength; current > 1; current--) {
+    const index = q.length - 1;
+    if (q[index] === current) {
+      q.splice(index, 1);
+    } else if (q[index - 1] === current) {
+      q.splice(index - 1, 1);
+      bribes++;
+    } else if (q[index - 2] === current) {
+      q.splice(index - 2, 1);
+      bribes++;
+      bribes++;
+    } else {
       console.log('Too chaotic');
       return 'Too chaotic';
-    }
-  }
+    };
+  };
   console.log(bribes);
   return bribes;
 }
