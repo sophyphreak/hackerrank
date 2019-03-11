@@ -1,32 +1,19 @@
 const minimumBribes = q => {
-  for (let index = 0; index < q.length; index++) {
-    const person = q[index];
-    if (person - index > 3) { // if this is true, then person bribed too many times
+  let bribes = 0;
+  const qLength = q.length;
+  for (let index = qLength; index > 1; index--) {
+    const targetLocation = q.indexOf(index);
+    q.splice(targetLocation, 1);
+    bribes += index - targetLocation - 1;
+    if (index - targetLocation - 1 > 2) {
       console.log('Too chaotic');
       return 'Too chaotic';
     }
-  };
-  let bribes = 0;
-  let sorted = 0;
-  while (sorted < q.length) {
-    for (let index = 1; index < q.length - sorted; index++) {
-      const prev = q[index - 1];
-      const cur = q[index];
-      if (prev > cur) {
-        q = swap(q, index - 1, index);
-        bribes++;
-      };
-    }
-    sorted++;
   }
   console.log(bribes);
   return bribes;
 }
 
-const swap = (arr, a, b) => {
-  [arr[a], arr[b]] = [arr[b], arr[a]];
-  return arr;
-}
 
 const assert = require('assert');
 
